@@ -1,25 +1,30 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import { routeLoader$ } from "@builder.io/qwik-city";
+
+import directus from '../../lib/directus';
+import { readItems } from '@directus/sdk';
+
+export const useGetGlobals = routeLoader$(async () => {
+  return directus.request(readItems("global"));
+});
 
 export default component$(() => {
+  const global = useGetGlobals().value;
   return (
     <>
-      <h1>Hi 👋</h1>
-      <p>
-        Can't wait to see what you build with qwik!
-        <br />
-        Happy coding.
-      </p>
+      <h1>{global.title}</h1>
+      <p>{global.description}</p>
     </>
   );
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to Qwik",
+  title: "Directus Rocks",
   meta: [
     {
       name: "description",
-      content: "Qwik site description",
+      content: "This is a fake website used as part of a demo for Directus + Qwik City using @directus/sdk",
     },
   ],
 };
