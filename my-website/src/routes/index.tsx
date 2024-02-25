@@ -1,5 +1,4 @@
 import { component$ } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
 import { routeLoader$ } from "@builder.io/qwik-city";
 
 import directus from '../../lib/directus';
@@ -19,12 +18,4 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = {
-  title: "Directus Rocks",
-  meta: [
-    {
-      name: "description",
-      content: "This is a fake website used as part of a demo for Directus + Qwik City using @directus/sdk",
-    },
-  ],
-};
+
